@@ -14,6 +14,6 @@ export class UserComponent implements OnInit {
   constructor(private service: UserService) {}
 
   ngOnInit(): void {
-    this.service.listar().subscribe((user) => (this.user = user));
+    this.service.listar('sds').subscribe((user) => (this.user = user));
   }
 }
