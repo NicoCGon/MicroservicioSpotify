@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './services/user.service';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'front-services';
+  idUser: User;
 
   constructor(private service: UserService) {
     if (location.search.indexOf('code') < 1) {
@@ -16,8 +18,11 @@ export class AppComponent {
       );
     } else {
       let paramms: string[] = location.search.split('=');
-
-      service.listar(`?code=${paramms[1]}`).subscribe();
+      service.listar(`?code=${paramms[1]}`).subscribe((user) => {
+        this.idUser = user;
+        localStorage.setItem('idUser', this.idUser.id);
+        console.log(this.idUser);
+      });
     }
   }
 }

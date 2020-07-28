@@ -10,10 +10,8 @@ import { User } from './../../models/user';
 export class UserComponent implements OnInit {
   name: string = 'nombre de usuario';
 
-  user: User = { id: 0, name: '', nameUser: '' };
+  user: User = { id: '', name: '', nameUser: '' };
   constructor(private service: UserService) {}
 
-  ngOnInit(): void {
-    this.service.listar('sds').subscribe((user) => (this.user = user));
-  }
+  ngOnInit(): void {}
 }

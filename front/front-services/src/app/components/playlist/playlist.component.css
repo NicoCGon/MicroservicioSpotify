@@ -1,0 +1,10 @@
+.contedor {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 100%;
+}
+
+.contedor-elemento {
+  padding: 1rem;
+}
