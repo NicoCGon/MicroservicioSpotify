@@ -37,7 +37,7 @@ public class LoginService implements ILoginService{
 	}
 
 	@SuppressWarnings("unused")
-	public void saveUserToken(String code) throws Exception{
+	public UserSpotify saveUserToken(String code) throws Exception{
 		UserSpotify userSpotify = spotifyService.findWebServiceUser(code);
 		if(userSpotify != null) {
 			Optional<User> user = userRepository.findById(userSpotify.getId());
@@ -49,5 +49,6 @@ public class LoginService implements ILoginService{
 			UserTokenSpotify userTokenSpotify = (UserTokenSpotify) userSpotify.getExplicit_content();
 			userTokenRepository.save(new UserToken(userSpotify.getId(), userTokenSpotify.getAccess_token(), new Date()));
 		}
+		return userSpotify;
 	}
 }
