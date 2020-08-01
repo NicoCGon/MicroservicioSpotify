@@ -14,6 +14,7 @@ export class ProfileService {
   constructor(private http: HttpClient) {}
 
   public listar(): Observable<Profile> {
-    return this.http.get<Profile>(this.baseEndpoint);
+    let id: string = localStorage.getItem('idUser');
+    return this.http.get<Profile>(`${this.baseEndpoint}/?id=${id}`);
   }
 }
