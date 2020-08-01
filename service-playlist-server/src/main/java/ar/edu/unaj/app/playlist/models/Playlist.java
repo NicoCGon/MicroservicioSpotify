@@ -1,4 +1,4 @@
-package ar.edu.unaj.app.gateway.models;
+package ar.edu.unaj.app.playlist.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

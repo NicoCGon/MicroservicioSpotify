@@ -1,4 +1,4 @@
-package ar.edu.unaj.app.gateway;
+package ar.edu.unaj.app.playlist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

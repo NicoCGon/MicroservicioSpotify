@@ -1,7 +1,7 @@
-package ar.edu.unaj.app.gateway.service;
+package ar.edu.unaj.app.playlist.service;
 
-import ar.edu.unaj.app.gateway.models.UserPlaylist;
-import ar.edu.unaj.app.gateway.models.UserToken;
+import ar.edu.unaj.app.playlist.models.UserPlaylist;
+import ar.edu.unaj.app.playlist.models.UserToken;
 
 public interface PlaylistService {
 	

@@ -1,14 +1,14 @@
-package ar.edu.unaj.app.gateway.service;
+package ar.edu.unaj.app.playlist.service;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unaj.app.gateway.clients.SpotifyClient;
-import ar.edu.unaj.app.gateway.models.UserPlaylist;
-import ar.edu.unaj.app.gateway.models.UserToken;
-import ar.edu.unaj.app.gateway.repository.UserTokenRepository;
+import ar.edu.unaj.app.playlist.clients.SpotifyClient;
+import ar.edu.unaj.app.playlist.models.UserPlaylist;
+import ar.edu.unaj.app.playlist.models.UserToken;
+import ar.edu.unaj.app.playlist.repository.UserTokenRepository;
 
 @Service
 public class PlaylistImp implements PlaylistService {
