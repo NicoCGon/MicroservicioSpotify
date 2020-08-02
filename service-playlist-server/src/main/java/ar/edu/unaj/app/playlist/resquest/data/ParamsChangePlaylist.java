@@ -1,7 +1,5 @@
 package ar.edu.unaj.app.playlist.resquest.data;
 
-import java.io.Serializable;
-
 public class ParamsChangePlaylist {
 
 	String name;
