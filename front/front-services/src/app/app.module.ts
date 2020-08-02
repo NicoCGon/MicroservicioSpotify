@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -12,7 +13,14 @@ import { TracksComponent } from './components/tracks/tracks.component'
 
 @NgModule({
   declarations: [AppComponent, UserComponent, SongComponent, PlaylistComponent, TracksComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
