@@ -1,39 +1,66 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{playlistTitle}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ playlistTitle }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Artist</th>
-                            <th scope="col">Year</th>
-                        </tr>
-                    </thead>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Artist</th>
+              <th scope="col">Year</th>
+            </tr>
+          </thead>
 
-                    <tbody>
+          <tbody>
+            <tr *ngFor="let Tracks of itemTracks; index as i">
+              <th scope="row" width="10px">
+                <img
+                  src="{{
+                    itemTracks[i]['track']['album']['images'][0]['url']
+                  }}"
+                  class="modalImg"
+                  alt="..."
+                />
+              </th>
+              <td width="80px">{{ itemTracks[i]["track"]["name"] }}</td>
+              <td width="80px">
+                {{ itemTracks[i]["track"]["artists"][0]["name"] }}
+              </td>
+              <td width="50px">
+                {{ itemTracks[i]["track"]["album"]["release_date"] }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
-                        <tr *ngFor="let Tracks of itemTracks; index as i">
-                            <th scope="row" width="10px"> <img src="{{ itemTracks[i]['track']['album']['images'][0]['url'] }}" class="modalImg" alt="..." />
-                            </th>
-                            <td width="80px">{{ itemTracks[i]['track']["name"] }}</td>
-                            <td width="80px">{{ itemTracks[i]['track']["artists"][0]["name"] }}</td>
-                            <td width="50px">{{ itemTracks[i]['track']["album"]["release_date"] }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
 <div *ngIf="userPlay" class="contedor">
   <div *ngFor="let playlist of userPlay.items" class="contedor-elemento">
     <div class="card" style="width: 18rem;">
@@ -206,21 +233,34 @@
         </form>
       </div>
     </div>
-</div>
+  </div>
 
-<div *ngIf="userPlay" class="contedor">
+  <div *ngIf="userPlay" class="contedor">
     <div *ngFor="let playlist of userPlay.items" class="contedor-elemento">
-        <div class="card" style="width: 18rem;">
-            <img src="{{ playlist.images[0]['url'] }}" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">{{ playlist.name }}</h5>
-                <p class="card-text">
-                    {{ playlist.description }}
-                </p>
-                <button id="{{ playlist.id }}" name="{{ playlist.name }}" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" (click)="toViewTrack($event)">
-                  Ver Lista
-                </button>
-            </div>
+      <div class="card" style="width: 18rem;">
+        <img
+          src="{{ playlist.images[0]['url'] }}"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ playlist.name }}</h5>
+          <p class="card-text">
+            {{ playlist.description }}
+          </p>
+          <button
+            id="{{ playlist.id }}"
+            name="{{ playlist.name }}"
+            type="button"
+            class="btn btn-success"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            (click)="toViewTrack($event)"
+          >
+            Ver Lista
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
