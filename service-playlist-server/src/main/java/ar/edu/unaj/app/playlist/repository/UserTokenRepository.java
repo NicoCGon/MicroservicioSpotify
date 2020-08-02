@@ -8,5 +8,6 @@ import ar.edu.unaj.app.playlist.models.UserToken;
 
 
 public interface UserTokenRepository  extends CrudRepository<UserToken, String> {
+	@Override
 	Optional<UserToken> findById(String id);
 }

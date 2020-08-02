@@ -4,6 +4,7 @@ import { PlaylistComponent } from './components/playlist/playlist.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './components/profile/profile.component';
+import { TracksComponent } from './components/tracks/tracks.component';
 
 const routes: Routes = [
   // { path: '', pathMatch: 'full', redirectTo: 'user' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'song', component: SongComponent },
   { path: 'playlist', component: PlaylistComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'tracks', component: TracksComponent },
 ];
 
 @NgModule({

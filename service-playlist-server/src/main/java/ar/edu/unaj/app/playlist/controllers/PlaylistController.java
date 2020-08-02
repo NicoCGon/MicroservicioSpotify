@@ -54,7 +54,7 @@ public class PlaylistController {
 	@RequestMapping(path = "/playlist")
 	public UserPlaylist playlist(@RequestParam(required = false, value = "id") String id) {
 
-		String user = "21ie6rh6bayixiczazk3iqbsq";
+		//String user = "21ie6rh6bayixiczazk3iqbsq";
 		UserToken usertoken = servicePlaylist.getTokenforUser(id);
 		UserPlaylist obj = servicePlaylist.getPLaylist("Bearer " + usertoken.getToken(), id);
 		return obj;
@@ -102,7 +102,7 @@ public class PlaylistController {
 
 		UserToken usertoken = servicePlaylist.getTokenforUser(idUser);
 		MyTracksParams params = new MyTracksParams("AR", "", "100", "0");
-		ListItemsTracks listTracks= (ListItemsTracks) client.listTracks("Bearer " + usertoken.getToken(), playlist_id, params);
+		ListItemsTracks listTracks= client.listTracks("Bearer " + usertoken.getToken(), playlist_id, params);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(listTracks);
 

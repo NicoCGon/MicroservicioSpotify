@@ -13,9 +13,7 @@ import ar.edu.unaj.app.playlist.models.UserPlaylist;
 import ar.edu.unaj.app.playlist.response.data.ListItemsTracks;
 import ar.edu.unaj.app.playlist.resquest.data.MyTracksParams;
 import ar.edu.unaj.app.playlist.resquest.data.TracksDelete;
-import ar.edu.unaj.app.playlist.resquest.data.Uri;
 import feign.Headers;
-import feign.Param;
 
 @FeignClient(value = "spotify", url = "https://api.spotify.com/v1/")
 public interface SpotifyClient {

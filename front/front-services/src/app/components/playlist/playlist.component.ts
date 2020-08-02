@@ -3,13 +3,22 @@ import { FormGroup, FormControl } from '@angular/forms'
 import { PlaylistService } from './../../services/playlist.service'
 import { UserPlaylist } from './../../models/user-playlist'
 import { Infoplaylist } from './../../models/infoplaylist'
+import {TracksService} from '../../services/tracks.service';
+import {Track} from '../../models/track';
+import {TrackList} from '../../models/trackList';
+
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit {
+      @Input()inTracks : any;
+
   userPlay: UserPlaylist
+      listaTracks : TrackList[];
+    playlistTitle : string;
+    itemTracks : [];
   infoPlaylist: Infoplaylist = new Infoplaylist(
     '',
     '',
@@ -28,7 +37,7 @@ export class PlaylistComponent implements OnInit {
     description: new FormControl(''),
     tipo: new FormControl(false)
   })
-  constructor (private service: PlaylistService) {}
+  constructor (private service: PlaylistService,private serviceTracks : TracksService) {}
 
   ngOnInit (): void {
     this.service.listar().subscribe(userP => {
@@ -59,4 +68,15 @@ export class PlaylistComponent implements OnInit {
     const playlist = new Infoplaylist(name, description, tipo, idUser)
     this.service.modificarPlaylist(playlist, id).subscribe(s => {})
   }
+  
+      toViewTrack(event : any): void {
+        this.playlistTitle = event.currentTarget.name;
+        this.serviceTracks.listar(event.currentTarget.id).subscribe((trackG) => {
+            this.listaTracks = trackG;
+            this.itemTracks = trackG['items'];
+            console.log(trackG);
+        });
+        console.log(this.listaTracks);
+
+    }
 }
