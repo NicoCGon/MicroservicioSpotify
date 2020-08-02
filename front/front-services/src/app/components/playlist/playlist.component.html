@@ -1,13 +1,173 @@
 <div *ngIf="userPlay" class="contedor">
   <div *ngFor="let playlist of userPlay.items" class="contedor-elemento">
     <div class="card" style="width: 18rem;">
-      <img src="{{ playlist.images[0].url }}" class="card-img-top" alt="..." />
+      <img
+        src="{{ playlist.images[0] ? playlist.images[0].url : '' }}"
+        class="card-img-top"
+        alt="..."
+      />
       <div class="card-body">
         <h5 class="card-title">{{ playlist.name }}</h5>
         <p class="card-text">
           {{ playlist.description }}
         </p>
         <a href="#" class="btn btn-primary">Ver Lista</a>
+        <button
+          class="btn btn-success"
+          type="button"
+          data-toggle="modal"
+          data-target="#modificar"
+          (click)="enviarInfo(playlist)"
+        >
+          Modificar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Crear Playlist</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="idplaylist" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre de Playlist</label>
+            <input
+              type="email"
+              class="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+              formControlName="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descripcion</label>
+            <textarea
+              formControlName="description"
+              class="form-control"
+              id="descripcion"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="exampleCheck1"
+              formControlName="tipo"
+            />
+            <label class="form-check-label" for="tipo">publica</label>
+          </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!profileForm.valid"
+          >
+            Crear
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modificar"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modificar Playlist</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          id="idplaylist"
+          [formGroup]="modificarPlaylist"
+          (ngSubmit)="modificar()"
+        >
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre de Playlist</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              aria-describedby="emailHelp"
+              value="{{ modificarPlaylist.value.name }}"
+              formControlName="name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descripcion</label>
+            <textarea
+              formControlName="description"
+              class="form-control"
+              id="descripcion"
+              rows="3"
+              formControlName="description"
+              value="{{ modificarPlaylist.value.description }}"
+            ></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="exampleCheck1"
+              formControlName="tipo"
+            />
+            <label class="form-check-label" for="tipo">publica</label>
+          </div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Cerrar
+          </button>
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!profileForm.valid"
+          >
+            Modificar
+          </button>
+        </form>
       </div>
     </div>
   </div>

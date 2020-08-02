@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,6 @@ import ar.edu.unaj.app.playlist.resquest.data.NewPlaylist;
 import ar.edu.unaj.app.playlist.resquest.data.ParamsChangePlaylist;
 import ar.edu.unaj.app.playlist.resquest.data.TracksDelete;
 import ar.edu.unaj.app.playlist.resquest.data.Uri;
-import ar.edu.unaj.app.playlist.service.PlaylistImp;
 import ar.edu.unaj.app.playlist.service.PlaylistService;
 
 @RestController
@@ -37,7 +37,7 @@ public class PlaylistController {
 	@Autowired
 	private SpotifyClient client;
 
-	@PostMapping("/playlists/new")
+	@PostMapping("/playlist/new")
 	public ResponseEntity<?> createdPlaylist(@RequestBody NewPlaylist playlist) {
 
 		UserToken usertoken = servicePlaylist.getTokenforUser(playlist.getIdUser());
@@ -61,10 +61,10 @@ public class PlaylistController {
 	}
 
 	@PutMapping("/playlists/{playlist_id}")
-	public ResponseEntity<?> changePlaylist(@RequestBody ParamsChangePlaylist paramsPlaylist,
+	public ResponseEntity<?> changePlaylist(@RequestBody NewPlaylist paramsPlaylist,
 			@PathVariable String playlist_id) {
 
-		UserToken usertoken = servicePlaylist.getTokenforUser(paramsPlaylist.getId());
+		UserToken usertoken = servicePlaylist.getTokenforUser(paramsPlaylist.getIdUser());
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("name", paramsPlaylist.getName());
